@@ -36,6 +36,7 @@ I used the Adventure book as my target style. The story decoder was trained on o
 
 <img src="https://github.com/ChenChengKuan/NeuralStoryTeller-tf/blob/master/imgs/universiades_girl.jpeg" height="220px" align="left">
 
+
 On the other side of the street , I saw a man standing in the middle of the street . He was sitting in the middle of the living room , wearing a white shirt and a white shirt . He wore a sleeveless white shirt and a pair of jeans and a pair of jeans . A woman with a black hair and a white shirt and a hat on her head was still holding .
 
 # To-do list
