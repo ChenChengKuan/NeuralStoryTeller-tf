@@ -19,6 +19,7 @@ Kiros and Samin had provided great explanations of how Neural Story Teller work.
    To generate stories, we need to a decoder to help us decode the sentence from the skip-thought embedding space to text. The input and output of decoder are **tokenized text passage** of desired style (Ex. fairy tale, romantic novel) and the correspinding indexlied token (Ex: Input: I have a lovely cat, Output: [0,2,3,10,11] ). The text  passage first encoded by skip-thougut model which serve as the initial state of decoder then the decoder try to learn to decode the passage correctly.
 
 * 4.Style-shfit
+
    Style shift is a bridge between our source target skipt-thought embedding and the target one. As reported by the original work, text encoded by skipthought vector has the analogy relationship like word2vec (i.e king - man + women = queen). Style shift apply similar idea by minus the original style c and add target style b to convert the original skipthought vector to the target domain.
 
     
