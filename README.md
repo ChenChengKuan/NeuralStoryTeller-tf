@@ -39,12 +39,18 @@ I used the Adventure book as my target style. The story decoder was trained on o
 <br>
 On the other side of the street , I saw a man standing in the middle of the street . He was sitting in the middle of the living room , wearing a white shirt and a white shirt . He wore a sleeveless white shirt and a pair of jeans and a pair of jeans . A woman with a black hair and a white shirt and a hat on her head was still holding .
 
-# To-do list
-[ ] Replace the uni-skip skipthought embedding with the combination of uni-skip and bi-skip as used in the original work. Single uni-skip representation might not be powertful enought to represent the long passages.
-[ ] Use larger sample to train the story decoder
+
+
 
 # Issue
 * The skipt-thought vector used here will output nan if the length of passage contains more than 610 characters, still not figure the reason
+* This repo used single uni-skip representation, which might not be powertful enought to represent the long passages.
+
+# To-do list
+- [ ] Replace the uni-skip skipthought embedding with the combination of uni-skip and bi-skip as used in the original work. 
+- [ ] Use larger sample to train the story decoder
+- [ ] Replace the theano-dependent image to caption model with show and tell
+
 
 # Getting Start
 You can play it around in demo.ipyb. Following are instruction of how to build everything from scratch.
