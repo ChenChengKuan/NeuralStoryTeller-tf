@@ -1,14 +1,53 @@
-
-class vse_config(object):
-    # Image-sentence embedding
-    def __init__(self):
-        self.vsemodel = 'caption_gen/coco_embeddings/coco_embedding.npz'
-        self.vgg = '/media/VSlab3/kuanchen_arxiv/NeuralStoryTeller/vgg19.pkl'
-        self.captions = 'caption_gen/coco_embeddings/coco_train_caps.txt'
-        
 class _HParams(object):
   """Wrapper for configuration parameters."""
   pass
+class vse_config(object):
+    # Image-sentence embedding
+    def __init__(self):
+        self.vsemodel = 'caption_gen/coco_embedding.npz' #'caption_gen/coco_embeddings/coco_embedding.npz'
+        self.vgg = '/media/VSlab3/kuanchen_arxiv/NeuralStoryTeller/vgg19.pkl'
+        self.captions = 'caption_gen/coco_train_caps.txt'#'caption_gen/coco_embeddings/coco_train_caps.txt'
+
+class storyteller_config(object):
+    #story teller configuration
+    def __init__(self):
+        self.filename = ""
+        self.values_per_input_shard = 2300
+        self.batch_size = 32  #default 32
+        self.vocab_size = None # To be computed from vocabulary file outside
+        self.w2v_embedding_size = 620
+        self.sk_embedding_size = 2400
+        self.initializer_scale = 0.08
+        self.code_name = "text_stv"
+        self.text_name = "text"
+        self.num_preprocess_threads = 1
+        #LSTM Related
+        self.lstm_dropout_keep_prob = 0.7 #default 0.7
+        # LSTM input and output dimensionality, respectively.
+        self.lstm_embedding_size = 620
+        self.num_lstm_units = 800
+
+class storyteller_training_config(object):
+    #story teller training configuration
+    def __init__(self):
+        """Sets the default training hyperparameters."""
+        # Number of examples per epoch of training data.
+        self.num_examples_per_epoch = 231932
+
+        # Optimizer for training the model.
+        self.optimizer = "SGD" #default "SGD"
+
+        # Learning rate for the initial phase of training.
+        self.initial_learning_rate = 2.0    # default 2.0
+        self.learning_rate_decay_factor = 0.8
+        self.num_epochs_per_decay = 4  #default 8
+
+        # If not None, clip gradients to this value.
+        self.clip_gradients = 5.0
+
+        # How many model checkpoints to keep.
+        self.max_checkpoints_to_keep = 2
+
 
 def stv_config(input_file_pattern=None,
                  input_queue_capacity=640000,
