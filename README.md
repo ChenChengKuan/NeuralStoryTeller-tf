@@ -4,7 +4,7 @@ This project aims to reproduce the awesome work [Neural Story Teller](https://gi
 
 # Background
 
-Kiros and Samin had provided great explanations of how Neural Story Teller work. Please refer to original [repo](https://github.com/ryankiros/neural-storyteller) and Samin's [blog post](https://medium.com/@samim/generating-stories-about-images-d163ba41e4ed) so I just give a wrap-up here. Basically, it contains 4 modules:
+Kiros and Samin had provided great explanations of how Neural Story Teller work. Please refer to original [repo](https://github.com/ryankiros/neural-storyteller) and Samin's [blog post](https://medium.com/@samim/generating-stories-about-images-d163ba41e4ed) so I just give a wrap up here. Basically, it contains for modules as shown in the figure below:
 
 * 1.Image to captions
 
@@ -12,11 +12,17 @@ Kiros and Samin had provided great explanations of how Neural Story Teller work.
     
 * 2.Skipt-thought vectors:
 
-    After the captions are extracted from the images, the final textual representation computed by taking avearge of the skip-thought vector of captions.
+    After the captions are extracted from the images, the final textual representation is computed by taking avearge of the skip-thought vector of captions.
     
 * 3.story decoder
 
-    To generate stories, we need to a decoder to help us decode the sentence from the skip-thought embedding space to text. The input and output of decoder are **tokenized text passage** of desired style (Ex. fairy tale, romantic novel) and the correspinding indexlied token (Ex: Input: I have lovely cay, Output: [0, 2,10,11] )
+    To generate stories, we need to a decoder to help us decode the sentence from the skip-thought embedding space to text. The input and output of decoder are **tokenized text passage** of desired style (Ex. fairy tale, romantic novel) and the correspinding indexlied token (Ex: Input: I have a lovely cat, Output: [0,2,3,10,11] ). The text  passage first encoded by skip-thougut model which serve as the initial state of decoder then the decoder try to learn to decode the passage correctly.
+
+* 4. Style-shfit
+
+    
+
+    
 
 
 
