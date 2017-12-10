@@ -16,7 +16,7 @@ Kiros and Samin had provided great explanations of how Neural Story Teller work.
     
 * 3.story decoder
 
-    To generate stories, we need to a decoder to help us decode the sentence from the skip-thought embedding space to text. The input and output of decoder are **tokenized text passage** of desired style (Ex. fairy tale, romantic novel) and the correspinding indexlied token (Ex: Input: I have a lovely cat, Output: [0,2,3,10,11] ). The text  passage first encoded by skip-thougut model which serve as the initial state of decoder then the decoder try to learn to decode the passage correctly.
+   To generate stories, we need to a decoder to help us decode the sentence from the skip-thought embedding space to text. The input and output of decoder are **tokenized text passage** of desired style (Ex. fairy tale, romantic novel) and the correspinding indexlied token (Ex: Input: I have a lovely cat, Output: [0,2,3,10,11] ). The text  passage first encoded by skip-thougut model which serve as the initial state of decoder then the decoder try to learn to decode the passage correctly.
 
 * 4.Style-shfit
 
