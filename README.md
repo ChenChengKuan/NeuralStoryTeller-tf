@@ -73,13 +73,13 @@ Follow the offical release skipthout vector to download the [pretrained skipthou
 You can use any corpus you like given you have large of text. I recommend to download [BookCorpus](http://yknzhu.wixsite.com/mbweb) Dataset (around 5G) if you do not want to prepare corpus. If you want to use customized corpus, please parse it to the following format:
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis interdum ipsum. Nunc sed fermentum massa. Suspendisse consequat tristique euismod. Fusce vel euismod diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec interdum mauris, quis eleifend erat. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis interdum ipsum. Nunc sed fermentum massa. Suspendisse consequat tristique euismod. Fusce vel euismod diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec interdum mauris, quis eleifend erat.<br> 
 
-Morbi pulvinar fringilla tempus. Pellentesque velit ligula, porttitor a euismod vitae, blandit vel sem. Nunc et risus urna. Nunc laoreet est sed est elementum luctus. 
+Morbi pulvinar fringilla tempus. Pellentesque velit ligula, porttitor a euismod vitae, blandit vel sem. Nunc et risus urna. Nunc laoreet est sed est elementum luctus.<br> 
 
-Nulla iaculis eros nec purus cursus placerat. Fusce luctus suscipit dui non posuere. Etiam hendrerit sapien eget turpis facilisis lobortis. Ut eleifend orci vitae magna tempor feugiat. Quisque consequat ultricies sodales.
+Nulla iaculis eros nec purus cursus placerat. Fusce luctus suscipit dui non posuere. Etiam hendrerit sapien eget turpis facilisis lobortis. Ut eleifend orci vitae magna tempor feugiat. Quisque consequat ultricies sodales.<br>
 
-Mauris ornare id velit et egestas. Ut in neque mauris. Nunc rutrum mauris lorem, ut fringilla mauris eleifend quis. Vivamus iaculis non orci eget pellentesque. Cras euismod feugiat placerat. Praesent vel ex ut ligula faucibus lacinia vel a dui. Quisque volutpat pellentesque urna.
+Mauris ornare id velit et egestas. Ut in neque mauris. Nunc rutrum mauris lorem, ut fringilla mauris eleifend quis. Vivamus iaculis non orci eget pellentesque. Cras euismod feugiat placerat. Praesent vel ex ut ligula faucibus lacinia vel a dui. Quisque volutpat pellentesque urna.<br>
 ```
 ### Train decoder
 Follow the instruction in the story-decoder.
