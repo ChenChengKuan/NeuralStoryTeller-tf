@@ -86,7 +86,7 @@ Each coprus will extract short and long style. Therefore, there are another two 
 - [ ] Use larger sample to train the story decoder
 - [ ] Replace the theano-dependent image to caption model with show and tell
 
-## Referenec
-[1] Ryan Kiros, Ruslan Salakhutdinov, Richard S. Zemel. "Unifying Visual-Semantic Embeddings with Multimodal Neural Language Models." arXiv preprint arXiv:1411.2539 (2014).
-[2] Ryan Kiros, Yukun Zhu, Ruslan Salakhutdinov, Richard S. Zemel, Antonio Torralba, Raquel Urtasun, and Sanja Fidler. "Skip-Thought Vectors." arXiv preprint arXiv:1506.06726 (2015).
+## Reference
+[1] Ryan Kiros, Ruslan Salakhutdinov, Richard S. Zemel. "Unifying Visual-Semantic Embeddings with Multimodal Neural Language Models." arXiv preprint arXiv:1411.2539 (2014).<br>
+[2] Ryan Kiros, Yukun Zhu, Ruslan Salakhutdinov, Richard S. Zemel, Antonio Torralba, Raquel Urtasun, and Sanja Fidler. "Skip-Thought Vectors." arXiv preprint arXiv:1506.06726 (2015).<br>
 [3]Vinyal et al. "Show and Tell: A Neural Image Caption Generator" CVPR 2015
