@@ -55,9 +55,12 @@ On the other side of the street , I saw a man standing in the middle of the stre
 # Getting Start
 You can play it around in demo.ipyb. Following are instruction of how to build everything from scratch.
 ## Install Required Package
-* Tensorflow (>=1.3) (instruction)
-* Theano (latest one) (instruction)
-* Numpy (instruction)
+* Tensorflow (>=1.3) ([instructions](https://www.tensorflow.org/install/))
+* Theano (1.0.0)([instructions](http://deeplearning.net/software/theano/))
+* Numpy ([instructions](https://www.scipy.org/install.html))
+* NLTK 
+   * First installation ([instructions](http://www.nltk.org/install.html))
+   * Install data ([instructions](http://www.nltk.org/data.html))
 
 ## Download the pretrained skipthought (optional but highly recommend)
 Follow the offical release skipthout vector to download the [pretrained skipthouht model](https://github.com/tensorflow/models/tree/master/research/skip_thoughts#download-pretrained-models-optional). This repo use uni-skip model only.
