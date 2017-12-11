@@ -13,12 +13,12 @@ from skipthought import encoder_manager
 np.random.seed(99)
 
 FLAGS = tf.flags.FLAGS
-tf.flags.DEFINE_string("stv_vocab", "/media/VSlab3/kuanchen_arxiv/skip_thoughts_uni_2017_02_02/vocab.txt", "vocab used by stv (expanded)")
-tf.flags.DEFINE_string("stv_embedding", "/media/VSlab3/kuanchen_arxiv/skip_thoughts_uni_2017_02_02/embeddings.npy", "stv embeddings of vocabulary")
-tf.flags.DEFINE_string("stv_model", "/media/VSlab3/kuanchen_arxiv/skip_thoughts_uni_2017_02_02/model.ckpt-501424", "checkpoint of pretrained skipthought model")
-tf.flags.DEFINE_string("book_data_dir", "/media/VSlab3/kuanchen_arxiv/BookCorpus_passage/", "directory of book data")
-tf.flags.DEFINE_string("book_category", "Adventure", "cateogry of book")
-tf.flags.DEFINE_string("output_dir", "/media/VSlab3/kuanchen_arxiv/vocab_60000_advent_allpad", "output directoy")
+tf.flags.DEFINE_string("stv_vocab", "", "vocab used by stv (expanded)")
+tf.flags.DEFINE_string("stv_embedding", "", "stv embeddings of vocabulary")
+tf.flags.DEFINE_string("stv_model", "", "checkpoint of pretrained skipthought model")
+tf.flags.DEFINE_string("book_data_dir", "", "directory of book data")
+tf.flags.DEFINE_string("book_category", "", "cateogry of book")
+tf.flags.DEFINE_string("output_dir", "", "output directoy")
 
 config_hardware = tf.ConfigProto()
 config_hardware.gpu_options.per_process_gpu_memory_fraction = 0.2
