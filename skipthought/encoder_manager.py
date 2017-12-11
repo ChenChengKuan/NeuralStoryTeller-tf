@@ -26,29 +26,23 @@ Example usage:
   encodings = manager.encode(data)
 """
 
-#from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
 import collections
-
-
 import numpy as np
 import tensorflow as tf
-
-#from skip_thoughts import skip_thoughts_encoder
 import skip_thoughts_encoder
-import os
-config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.1
-os.environ["CUDA_VISIBLE_DEVICES"]="7"
+
 
 class EncoderManager(object):
   """Manager class for loading and encoding with skip-thoughts models."""
 
-  def __init__(self):
+  def __init__(self,config):
     self.encoders = []
     self.sessions = []
+    self.config = config
 
   def load_model(self, model_config, vocabulary_file, embedding_matrix_file,
                  checkpoint_path):
@@ -87,7 +81,7 @@ class EncoderManager(object):
       restore_model = encoder.build_graph_from_config(model_config,
                                                       checkpoint_path)
 
-    sess = tf.Session(graph=g,config=config)
+    sess = tf.Session(graph=g,config=self.config)
     restore_model(sess)
 
     self.encoders.append(encoder)
