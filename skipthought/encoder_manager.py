@@ -28,13 +28,11 @@ Example usage:
 
 from __future__ import division
 from __future__ import print_function
-
 import os
 import collections
 import numpy as np
 import tensorflow as tf
 import skip_thoughts_encoder
-
 
 class EncoderManager(object):
   """Manager class for loading and encoding with skip-thoughts models."""
