@@ -71,11 +71,12 @@ Follow the offical release skipthout vector to download the [pretrained skipthou
 
 ### Prepare the corpus with target style
 You can use any corpus you like given you have large of text. I recommend to download [BookCorpus](http://yknzhu.wixsite.com/mbweb) Dataset (around 5G) if you do not want to prepare corpus. If you want to use customized corpus, please parse it to the following format:
-od feugiat placerat. Praesent vel ex ut ligula faucibus lacinia vel a dui. Quisque volutpat pellentesque urna.<br>
+
+![text foramt](https://github.com/ChenChengKuan/NeuralStoryTeller-tf/blob/master/imgs/text.png)
 
 ### Train decoder
 Follow the instruction in the story-decoder.
-![text foramt](https://github.com/ChenChengKuan/NeuralStoryTeller-tf/blob/master/imgs/text.png)
+
 ### Style-shift
 
 
