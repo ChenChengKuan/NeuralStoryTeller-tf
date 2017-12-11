@@ -7,7 +7,7 @@ This project aims to reproduce the awesome work [Neural Story Teller](https://gi
 Kiros and Samin had provided great explanations of how Neural Story Teller work. Please refer to original [repo](https://github.com/ryankiros/neural-storyteller) and Samin's [blog post](https://medium.com/@samim/generating-stories-about-images-d163ba41e4ed) so I just give a wrap up here. Basically, it contains for modules as shown in the figure below:
 
 ![model overview](https://github.com/ChenChengKuan/NeuralStoryTeller-tf/blob/master/imgs/neuralstoryteller.png)
-<center>*Overview of Neural Story Teller*</center>
+                                      Overview of Neural Story Teller
 
 * 1.Image to captions
 
