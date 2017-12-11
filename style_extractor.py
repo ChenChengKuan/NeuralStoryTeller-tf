@@ -43,18 +43,17 @@ def load_book_vocab(book_file, most_common, num_sample_passage):
 def main(unused_arg):
     book_sample_passage = load_book_vocab(FLAGS.book_data_dir + FLAGS.book_category + "/*",\
                                           num_sample_passage=-1)
-    style_length_cut_long = FLAGS.style_length_cut_long
-    style_length_cut_short = FLAGS.style_length_cut_short
+
     sentence_long = []
     sentence_short = []
-    ad_hoc_cut = 610 #This is used to remove the skipthought issue reported in the Issue session
+    HACK_CUT = 610 #This is used to remove the skipthought issue reported in the Issue session
     for p in book_sample_passage:
-        if len(p) > ad_hoc_cut:
+        if len(p) > HACK_CUT:
             continue
-        elif len(p.split(" ")) >= style_length_cut_long:
+        elif len(p.split(" ")) >= FLAGS.style_length_cut_long:
             sentence_long.append(p)
         
-        elif len(p.split(" ")) <= style_length_cut_short:
+        elif len(p.split(" ")) <= FLAGS.style_length_cut_short:
             sentence_short.append(p)
 
     min_len_long = min([len(e.split(" ")) for e in sentence_long])
@@ -99,9 +98,9 @@ def main(unused_arg):
     style_bias_long = np.mean(encodings_valid_long, axis=0)
     style_bias_short = np.mean(encodings_valid_short, axis=0)
 
-    with open("style_bias/bias_fulladvent_long_100.pkl", 'w') as handle:
+    with open("style_bias/bias_" + FLAGS.book_category + "_" + str(FLAGS.style_length_cut_long) + ".pkl", 'w') as handle:
         cPickle.dump(style_bias_long, handle)
-    with open("style_bias/bias_fulladvent_short_50.pkl", 'w') as handle:
+    with open("style_bias/bias_" + FLAGS.book_category + "_" + str(FLAGS.style_length_cut_short) + ".pkl", 'w') as handle:
         cPickle.dump(style_bias_short, handle)
 
 if __name__ == "__main__":
