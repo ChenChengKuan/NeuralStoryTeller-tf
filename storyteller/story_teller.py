@@ -5,7 +5,7 @@ class StoryDecoder():
     
     def __init__(self, config, mode):
         
-        assert mode in ["train", "eval", "inference"]
+        assert mode in ["train", "inference"]
         self.config = config
         self.mode = mode
         
