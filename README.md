@@ -53,20 +53,19 @@ On the other side of the street , I saw a man standing in the middle of the stre
 ## Getting Start
 Following steps will guide you how to run demo.ipynb and show the directions of building everything from scratch
 
-### Install Required Package
+### Step 0: Install Required Package
 * Tensorflow (>=1.3) ([instructions](https://www.tensorflow.org/install/))
 * Theano (1.0.0)([instructions](http://deeplearning.net/software/theano/))
 * Numpy ([instructions](https://www.scipy.org/install.html))
 * NLTK 
    * First installation ([instructions](http://www.nltk.org/install.html))
-   * Install data ([instructions](http://www.nltk.org/data.html))
+   * Download data ([instructions](http://www.nltk.org/data.html))
 
-### Prepare caption generator
-Actually, you can use any image to caption model given that it can output top K captoins of an input image. This model use
+### Step 1: Prepare caption generator
+Actually, you can use any image to caption model given that it can output top K captoins of an input image. This model use visual-semantic embedding as caption generator.
 
-
-### Download the pretrained skipthought (optional but highly recommend)
-Follow the offical release skipthout vector to download the [pretrained skipthouht model](https://github.com/tensorflow/models/tree/master/research/skip_thoughts#download-pretrained-models-optional). This repo use uni-skip model only.
+### Step 2: Download the pretrained skipthought (optional but highly recommend)
+Follow the offical release skipthout vector to download the [pretrained skipthouht model](https://github.com/tensorflow/models/tree/master/research/skip_thoughts#download-pretrained-models-optional). This repo use uni-skip model only. Unzip the related files to `skipthought/stv_pretrained`
 
 ### Prepare the corpus with target style
 You can use any corpus you like given you have large of text. I recommend to download [BookCorpus](http://yknzhu.wixsite.com/mbweb) Dataset (around 5G) if you do not want to prepare corpus. If you want to use customized corpus, please parse it to the following format:
@@ -74,9 +73,21 @@ You can use any corpus you like given you have large of text. I recommend to dow
 ![text foramt](https://github.com/ChenChengKuan/NeuralStoryTeller-tf/blob/master/imgs/text.png)
 
 ### Train decoder
-Follow the instruction in the story-decoder.
+Please follow the instructions in the story-decoder.
 
-### Style-shift
+### Style-extractor
+If you just want to play with `demo.ipynb`, you can use pre-extracted text style in `style_bias/`. I aslo provide a script `style_extractor.py` to extarct arbitrary corpus style. Just run:
+```
+python style_extractor.py --stv_vocab "SKIPTHOUGHT_PRETRAINED_PATH/vocab.txt"
+                          --stv_embedding "SKIPTHOUGHT_PRETRAINED_PATH/embeddings.npy"
+                          --stv_model "SKIPTHOUGHT_PRETRAINED_PATH/model-xxxxxx.ckpt"
+                          --book_data_dir "BOOKCORPUS_PATH"
+                          --book_data_cat "book_category"
+```
+
+* book_data_dir and book_cat_dir: 
+   These two parameters will be set only if you use BookCorpus Dataset. They are used set which category of book in BookCorpus    data is used to extract style. If you use your customized data. Just set this to path of your data
+* style_length_cut_long and style_length_cut_short: Given a corpus, it will extract two kind of style for experiment. One is long style and the other is short style. These two parameters are used to specify the threshold of long and short text.
 
 
     
