@@ -14,7 +14,7 @@ python build_data.py --stv_vocab "SKIPTHOUGHT_PRETRAINED_PATH/vocab.txt"
 ```
 To speed up the training, current work will first encode all passages into skipthought embedding and store it as `TRAIN_DATA_PATH/stv_text_code.tfrecord`
 
-Note: the current approach consumes large amount of disk memory. To overcome this problem, computing skipthought embedding during training is a possible solution. However, this will slow down the training process.
+Note: the current approach consumes large amount of disk memory. To overcome this problem, computing skipthought embedding during training is a possible solution. However, this will slow down the training process. Some cache mechanism might help to solve this problem.
 
 ### Step 2 Train decoder
 Set storyteller_training_config = number of training data in stv_text_code.tfrecord Then run:
