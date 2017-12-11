@@ -83,11 +83,9 @@ python style_extractor.py --stv_vocab "SKIPTHOUGHT_PRETRAINED_PATH/vocab.txt"
                           --stv_model "SKIPTHOUGHT_PRETRAINED_PATH/model-xxxxxx.ckpt"
                           --book_data_dir "BOOKCORPUS_PATH"
                           --book_data_cat "book_category"
+                          --output_dir "style_bias/"
 ```
-
-* book_data_dir and book_cat_dir: 
-   These two parameters will be set only if you use BookCorpus Dataset. They are used set which category of book in BookCorpus    data is used to extract style. If you use your customized data. Just set this to path of your data
-* style_length_cut_long and style_length_cut_short: Given a corpus, it will extract two kind of style for experiment. One is long style and the other is short style. These two parameters are used to specify the threshold of long and short text.
+Each coprus will extract short and long style. Therefore, there are another two parameters `style_length_cut_long` and `style_length_cut_short`  can be set to decide the threshold of short and long text.
 
 
     
