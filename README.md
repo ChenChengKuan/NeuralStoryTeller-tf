@@ -56,7 +56,7 @@ You can use any corpus you like given you have large of text. I recommend to dow
 ![text foramt](https://github.com/ChenChengKuan/NeuralStoryTeller-tf/blob/master/imgs/text.png)
 
 ### Step 4: Train decoder
-Please follow the instructions in the story-decoder.
+Please follow the instructions in the [story-decoder](https://github.com/ChenChengKuan/NeuralStoryTeller-tf/tree/master/storyteller).
 
 ### Step 5: Style-extractor
 If you just want to play with `demo.ipynb`, you can use pre-extracted text style in `style_bias/`. I aslo provide a script `style_extractor.py` to extarct arbitrary corpus style. Just run:
