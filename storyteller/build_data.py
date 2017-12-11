@@ -2,14 +2,14 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 import sys
-sys.path.append('../skip_thoughts/')
+sys.path.append('..')
 import tensorflow as tf
 import collections
 import numpy as np
-import configuration_sk
-import encoder_manager
+import configuration
 import os
 import nltk
+from skipthought import encoder_manager
 np.random.seed(99)
 
 FLAGS = tf.flags.FLAGS
@@ -20,8 +20,8 @@ tf.flags.DEFINE_string("book_data_dir", "/media/VSlab3/kuanchen_arxiv/BookCorpus
 tf.flags.DEFINE_string("book_category", "Adventure", "cateogry of book")
 tf.flags.DEFINE_string("output_dir", "/media/VSlab3/kuanchen_arxiv/vocab_60000_advent_allpad", "output directoy")
 
-config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.2
+config_hardware = tf.ConfigProto()
+config_hardware.gpu_options.per_process_gpu_memory_fraction = 0.2
 os.environ["CUDA_VISIBLE_DEVICES"]="2"
 tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -104,7 +104,7 @@ def _sentence_to_ids(sentence, vocab, unk_id, sos_id, eos_id):
 def main(unused_arg):
     vocab_book, book_sample_passage = load_book_vocab(FLAGS.book_data_dir + FLAGS.book_category + "/*",\
                                                       most_common=60000, \
-                                                      num_sample_passage=250000)
+                                                      num_sample_passage=1000)
     vocab_exp = load_expanded_vocab(FLAGS.stv_vocab)
     with open(FLAGS.stv_embedding, 'r') as f:
         embedding_matrix = np.load(f)
@@ -145,13 +145,6 @@ def main(unused_arg):
         vocab_book_augment_dict[v] = i
     assert np.array_equal(embedding_matrix[vocab_exp['the']], embedding_matrix_reduced[vocab_book_augment_dict['the']])
     assert np.array_equal(start_token_embed/np.linalg.norm(start_token_embed), embedding_matrix_reduced[vocab_book_augment_dict['<sos>']])
-    #sentence_detector = nltk.data.load("tokenizers/punkt/english.pickle")
-    #book_sample_sentwise = []
-    #for p in book_sample_passage:
-    #    for s in sentence_detector.tokenize(p):
-    #        book_sample_sentwise.append(s)
-
-    #print (book_sample_sentwise[100])
 
     max_word_len = 100
     passage_overlength = 0
@@ -168,12 +161,11 @@ def main(unused_arg):
     tf.logging.info("Number of passage : %s", len(book_sample_passage_cut))
 
     tf.logging.info("loading encoder")
-    encoder = encoder_manager.EncoderManager()
-    encoder.load_model(configuration_sk.model_config(),
+    encoder = encoder_manager.EncoderManager(config=config_hardware)
+    encoder.load_model(configuration.stv_config(),
                        vocabulary_file=FLAGS.stv_vocab,
                        embedding_matrix_file=FLAGS.stv_embedding,
                        checkpoint_path=FLAGS.stv_model)
-
     tf.logging.info("encoding data")
     encodings = encoder.encode(book_sample_passage_cut)
     tf.logging.info("Writing data")
@@ -193,7 +185,6 @@ def main(unused_arg):
     tf.logging.info("Number of invalid encoding : %s", num_invalid_encoding)
     tf.logging.info("Numeber of valid sample: %s", len(book_sample_passage_valid))
     tf.logging.info("Writing data")
-
     tf_record_file = os.path.join(FLAGS.output_dir, "stv_text_code.tfrecord")
     writer = tf.python_io.TFRecordWriter(tf_record_file)
     SOS_ID = vocab_book_augment_dict['<sos>']
