@@ -15,6 +15,8 @@ tf.flags.DEFINE_string("stv_embedding", "", "path stv embeddings of vocabulary")
 tf.flags.DEFINE_string("stv_model", "", "path of pretrained skipthought model checkpoint")
 tf.flags.DEFINE_string("book_data_dir", "", "path to directory of book data")
 tf.flags.DEFINE_string("book_category", "Adventure", "cateogry of book")
+tf.flags.DEFINE_string("style_length_cut_long", 100, "passage which is greather than this length is consider long")
+tf.flags.DEFINE_string("style_length_cut_short", 50, "passage which is shorter than this lenght is consider as short ")
 
 config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.1
@@ -41,11 +43,11 @@ def load_book_vocab(book_file, most_common, num_sample_passage):
 def main(unused_arg):
     book_sample_passage = load_book_vocab(FLAGS.book_data_dir + FLAGS.book_category + "/*",\
                                           num_sample_passage=-1)
-    style_length_cut_long = 100 #>50(adventure:50), (romance:100) word for verbose stylem <50 for terse one
-    style_length_cut_short = 50 
+    style_length_cut_long = FLAGS.style_length_cut_long
+    style_length_cut_short = FLAGS.style_length_cut_short
     sentence_long = []
     sentence_short = []
-    ad_hoc_cut = 610
+    ad_hoc_cut = 610 #This is used to remove the skipthought issue reported in the Issue session
     for p in book_sample_passage:
         if len(p) > ad_hoc_cut:
             continue
@@ -57,8 +59,6 @@ def main(unused_arg):
 
     min_len_long = min([len(e.split(" ")) for e in sentence_long])
     max_len_short = max([len(e.split(" ")) for e in sentence_short])
-    print(min_len_long)
-    print(max_len_short)
 
     assert min_len_long >= style_length_cut_long and max_len_short <= style_length_cut_short
 
