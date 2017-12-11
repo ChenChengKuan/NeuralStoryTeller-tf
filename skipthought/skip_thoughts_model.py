@@ -30,12 +30,9 @@ Layer normalization is applied based on the paper:
 
 from __future__ import division
 from __future__ import print_function
-
-
 import tensorflow as tf
 from ops import gru_cell
 from ops import input_ops
-
 
 def random_orthonormal_initializer(shape, dtype=tf.float32,
                                    partition_info=None):  # pylint: disable=unused-argument
