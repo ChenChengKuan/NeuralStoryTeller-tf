@@ -5,7 +5,7 @@ class vse_config(object):
     # Image-sentence embedding
     def __init__(self):
         self.vsemodel = 'caption_gen/coco_embedding.npz' #'caption_gen/coco_embeddings/coco_embedding.npz'
-        self.vgg = '/media/VSlab3/kuanchen_arxiv/NeuralStoryTeller/vgg19.pkl'
+        self.vgg = '' #path to vgg19.pkl 
         self.captions = 'caption_gen/coco_train_caps.txt'#'caption_gen/coco_embeddings/coco_train_caps.txt'
 
 class storyteller_config(object):
