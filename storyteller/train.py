@@ -1,10 +1,11 @@
-from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 import tensorflow as tf
+import sys
 import os
 import numpy as np
-from configs.config_teller import *
+sys.path.append("../")
+from configuration import *
 from story_teller import StoryDecoder
 config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.3
@@ -12,11 +13,11 @@ os.environ["CUDA_VISIBLE_DEVICES"]="2"
 
 
 FLAGS = tf.app.flags.FLAGS
-tf.flags.DEFINE_string("input_file_name", "/media/VSlab3/kuanchen_arxiv/vocab_40000_100_advent/stv_text_code.tfrecord",
+tf.flags.DEFINE_string("input_file_name", "/media/VSlab3/kuanchen_arxiv/vocab_60000_advent_allpad/stv_text_code.tfrecord",
                        "path of input TFrecords")
-tf.flags.DEFINE_string("input_vocab", "/media/VSlab3/kuanchen_arxiv/vocab_40000_100_advent/vocab_shared.txt", "vocabulary used ")
-tf.flags.DEFINE_string("pretrained_embedding", "/media/VSlab3/kuanchen_arxiv/vocab_40000_100_advent/embeddings_r.npy", "pretrained reduced embeddings")
-tf.flags.DEFINE_string("train_dir", "./res_adv_3",
+tf.flags.DEFINE_string("input_vocab", "/media/VSlab3/kuanchen_arxiv/vocab_60000_advent_allpad/vocab_shared.txt", "vocabulary used ")
+tf.flags.DEFINE_string("pretrained_embedding", "/media/VSlab3/kuanchen_arxiv/vocab_60000_advent_allpad/embeddings_r.npy", "pretrained reduced embeddings")
+tf.flags.DEFINE_string("train_dir", "./res_adv_4_1",
                        "Directory for saving and loading model checkpoints.")
 tf.flags.DEFINE_integer("number_of_steps", 600000, "Number of training steps.")
 tf.flags.DEFINE_integer("log_every_n_steps", 1,
@@ -29,15 +30,14 @@ def main(unused_argv):
     assert FLAGS.input_file_name, "--input_file_name is required"
     assert FLAGS.train_dir, "--train_dir is required"
 
-    model_config = ModelConfig()
+    model_config = storyteller_config()
     model_config.filename = FLAGS.input_file_name
     vocab_count = 0
     with tf.gfile.Open(FLAGS.input_vocab, 'r') as f:
         for line in f:
             vocab_count += 1
     model_config.vocab_size = vocab_count
-    training_config = TrainingConfig()
-
+    training_config = storyteller_training_config()
 
     train_dir = FLAGS.train_dir
     if not tf.gfile.IsDirectory(train_dir):
@@ -48,14 +48,12 @@ def main(unused_argv):
     g = tf.Graph()
     with g.as_default():
         
-        model = StoryDecoder(
-            model_config, mode="train")
+        model = StoryDecoder( model_config, mode="train")
         model.build()
-
         learning_rate_decay_fn = None
-
         learning_rate = tf.constant(training_config.initial_learning_rate)
         if training_config.learning_rate_decay_factor > 0:
+            assert training_config.num_examples_per_epoch is not None, "num_example_per_epoch should be specified"
             num_batches_per_epoch = (training_config.num_examples_per_epoch /
                                      model_config.batch_size)
             decay_steps = int(num_batches_per_epoch *
