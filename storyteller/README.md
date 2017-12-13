@@ -24,8 +24,9 @@ python train.py --input_file_name "TRAIN_DATA_PATH/stv_text_code.tfrecord"
                 --pretrained_embedding "TRAIN_DATA_PATH/embeddings_r.npy"
                 --train_dir "MODEL_CHECKPOINT_PATH"
 ```
+
 ### Note of training:
-    * The original use Adam optimizer with learning constant learning rate 0.01. However, I found naive SGD with initial learning rate = 2.0 and with decayed factor is more effective in my current setting.
-    * Following are several differene of this decoder and the one used by Kiro
-        * I use LSTM instead of GRU
-        * I add a dropout layer with dropout rate = 0.5
+   * The original use Adam optimizer with learning constant learning rate 0.01. However, I found naive SGD with initial learning rate = 2.0 and with decayed factor is more effective in my current setting.
+   * Following are several differene of this decoder and the one used by Kiro
+       * I use LSTM instead of GRU
+       * I add a dropout layer with dropout rate = 0.5
