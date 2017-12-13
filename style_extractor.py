@@ -18,16 +18,14 @@ tf.flags.DEFINE_string("book_category", "Adventure", "cateogry of book")
 tf.flags.DEFINE_string("style_length_cut_long", 100, "passage which is greather than this length is consider long")
 tf.flags.DEFINE_string("style_length_cut_short", 50, "passage which is shorter than this lenght is consider as short ")
 
-config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.1
+config_hardware = tf.ConfigProto()
+config_hardware.gpu_options.per_process_gpu_memory_fraction = 0.1
 os.environ["CUDA_VISIBLE_DEVICES"]="7"
 tf.logging.set_verbosity(tf.logging.INFO)
 
-def load_book_vocab(book_file, most_common, num_sample_passage):
+def load_book_vocab(book_file, num_sample_passage):
 
     tf.logging.info("Reading original book from %s", book_file)
-    tf.logging.info("Sampling %s and take most common %s vocabulary", num_sample_passage, most_common)
-
     book_data = []
     for f in tf.gfile.Glob(FLAGS.book_data_dir + FLAGS.book_category + "/*"):
         with tf.gfile.Open(f) as book:
@@ -59,14 +57,14 @@ def main(unused_arg):
     min_len_long = min([len(e.split(" ")) for e in sentence_long])
     max_len_short = max([len(e.split(" ")) for e in sentence_short])
 
-    assert min_len_long >= style_length_cut_long and max_len_short <= style_length_cut_short
+    assert min_len_long >= FLAGS.style_length_cut_long and max_len_short <= FLAGS.style_length_cut_short
 
     tf.logging.info("Number of passage long: %s", len(sentence_long))
     tf.logging.info("Number of passage short: %s", len(sentence_short))
 
     tf.logging.info("loading encoder")
     stv_config = stv_config()
-    encoder = encoder_manager.EncoderManager(config_hardware=config)
+    encoder = encoder_manager.EncoderManager(config=config_hardware)
     encoder.load_model(model_config=stv_config,
                        vocabulary_file=FLAGS.stv_vocab,
                        embedding_matrix_file=FLAGS.stv_embedding,
