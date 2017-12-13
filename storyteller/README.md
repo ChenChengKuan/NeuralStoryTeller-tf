@@ -29,4 +29,4 @@ python train.py --input_file_name "TRAIN_DATA_PATH/stv_text_code.tfrecord"
    * The origianl decoder used by Kiros applied Adam optimizer with learning constant learning rate 0.01. However, I found naive SGD with initial learning rate = 2.0 and with decayed factor is more effective in my current setting.
    * Following are several differene of this decoder and the one used by Kiro
        * I use LSTM instead of GRU
-       * I add a dropout layer with dropout rate = 0.5
+       * I add a dropout layer in output layer with dropout rate = 0.7
