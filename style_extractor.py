@@ -5,7 +5,7 @@ import collections
 import numpy as np
 import os
 import cPickle
-import configurations
+from configuration import *
 from skipthoughts import encoder_manager
 np.random.seed(99)
 
